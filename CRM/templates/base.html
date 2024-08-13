@@ -1,0 +1,93 @@
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"> </script>
+</head>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      {% load static %}
+      <img src="{% static 'images/home.png' %}" alt="" width="110"  height="auto" class="d-inline-block align-text-top" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'elevatorpitch' %}">Elevator pitch</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <p class="nav-link" href="">Hola {{ user.username }}</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    <style>
+      body {
+        transition: background-color 0.50s ease;
+      }
+      .modo-claro {
+          background-color: #ffffff;
+          color: #333;
+      }
+      nav{
+        background-color:#bbbbbb;
+      }
+      .container-fluid{
+        background-color:#ffffff;
+      }
+      .navbar{
+        background-color:#bbbbbb !important;
+      }
+      .nav-link {
+        color: inherit;
+      }
+      .navbar-brand img {
+        filter: invert(1);
+      }
+      .footer {
+        background-color: #bbbbbb;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+    <body class="modo-claro">
+        <footer class="footer" id="myFooter">
+          <p>© 2024 Copyright</p>
+        </footer>
+      <script>
+        const body = document.body;
+        const imagenCambiable = document.getElementById('imagen-cambiable');
+        const navbar = document.querySelector('.navbar');
+        var footer = document.getElementById('myFooter');
+      </script>
+    </body>
+  </div>
+</nav>
+
+<div class="container"> 
+  {% block content %} 
+  {% endblock content %} 
+</div>
