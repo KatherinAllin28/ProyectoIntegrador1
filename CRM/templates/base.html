@@ -25,6 +25,9 @@
             <p class="nav-link" href="">Hola {{ user.username }}</p>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'gestion' %}">Gestión de Clientes</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesion</a>
           </li>
         {% else %}

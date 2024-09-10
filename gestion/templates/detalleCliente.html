@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section style="background-color: #eee;">
+    {% comment %} <!-- Ventana Modal Venta -->
+        <!-- Trigger Modal -->
+        <button type="button" class="btn bg-dark-subtle text-dark-emphasis p-2 m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Generar Venta
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Generar Venta a Nombre de {{ detalle_cliente.nombreCliente }}</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form action="{% url 'productosServicios' %}" method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <div class="mb-3">
+                              <div class="mb-3">
+                                  <label class="form-label">Nombre del Producto</label>
+                                  <input type="text" class="form-control" name="{{form.nombrePS.name}}">
+                              </div>
+                              <div class="mb-3">
+                                  <label class="form-label">Precio Unitario del Producto</label>
+                                  <div class="input-group mb-3">
+                                      <span class="input-group-text">$</span>
+                                      <input type="number" class="form-control" name="{{form.precioUnitarioPS.name}}">
+                                      <span class="input-group-text">.00</span>
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label class="form-label">Cantidad</label>
+                                  <div class="input-group mb-3">
+                                      <span class="input-group-text">$</span>
+                                      <input type="number" class="form-control" name="{{form.precioUnitarioPS.name}}">
+                                      <span class="input-group-text">.00</span>
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                <label class="form-label">Total</label>
+                                <span class="input-group-text">$</span>
+                              </div>
+                              <div class="mb-3">
+                                  <label class="form-label">Observaciones</label>
+                                  <textarea class="form-control" aria-label="With textarea" name="{{form.observacion.name}}"></textarea>
+                              </div>
+                              <input type="submit" class="btn btn-primary" value="Registrar">
+                          </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn bg-dark-subtle text-dark-emphasis p-2 m-3">Save changes</button>
+                  </div>
+              </div>
+          </div>
+      </div> {% endcomment %}
+
+        <!-- Fin Ventana Modal Venta -->
+
+
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">{{ detalle_cliente.nombreCliente }}</h5>
+              <p class="text-muted mb-1">Cliente desde: {{ detalle_cliente.creationDate }}</p>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <!--  <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fas fa-globe fa-lg text-warning"></i>
+                  <p class="mb-0">https://mdbootstrap.com</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                  <p class="mb-0">@mdbootstrap</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li>
+              </ul>
+            </div>-->
+          </div>
+        </div> 
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Nombre</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ detalle_cliente.nombreCliente }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ detalle_cliente.emailCliente }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Telefono</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ detalle_cliente.telefonoCliente }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Telefono 2</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ detalle_cliente.telefonoCliente2 }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Identificación</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ detalle_cliente.idCliente }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Dirección</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ detalle_cliente.ubicacionClientes }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class = "row">
+        <h3>Ventas por mes</h3>
+        <img src="data:image/png;base64,{{ graphic }}" alt="Movies per year chart">
+      </div>
+    </div>
+    
+  </section>   
+{% endblock %}

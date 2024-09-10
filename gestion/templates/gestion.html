@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <h1 class="text-center">LISTADO DE CLIENTES</h1>
+    <button type="button" class="btn" ><a class="link-dark link-offset-2" href="{% url 'crearCliente' %}">Crear Cliente</a></button>
+    <div class="list-group p-3 mb-2 bg-secondary-subtle">
+        {% for cliente in clientes %}
+        <div class="card text-center mb-5">
+            <a href="{% url 'detalleCliente' cliente.id %}" class="list-group-item list-group-item-action active p-3 mb-2 bg-dark-subtle text-dark-emphasis" aria-current="true">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cliente.nombreCliente }}</h5>
+                    <p class="card-text">{{ cliente.creationDate }}</p>
+                    <p class="card-text">{{ cliente.telefonoCliente }}-{{ cliente.emailCliente }}</p>
+                </div>
+            </a>
+            <div class="card-footer text-body-secondary">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Consejo IA
+                </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a href="{% url 'delete' cliente.id %}" class="text-white">Eliminar </a>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% for key, value in respuestas.items %}
+                        {% if key == cliente.id %}
+                            {{ value }}
+                        {%endif%}
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+  
+  

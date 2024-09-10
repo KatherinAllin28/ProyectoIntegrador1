@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from home import views as hviews
 from cuenta import views as cuentaViews
+from gestion import views as gestionViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,9 @@ urlpatterns = [
     path('registro/', cuentaViews.registro, name="registro"),
     path('login/', cuentaViews.loginView, name="login"),
     path('logout/', cuentaViews.logoutView, name="logout"),
-    
+    path('gestion/',gestionViews.gestion, name='gestion'),
+    path('crearCliente/',gestionViews.crearCliente, name='crearCliente'),
+    path('gestion/<int:id>/',gestionViews.detalleCliente, name='detalleCliente'),
+    path('delete/<int:id>/',gestionViews.delete, name='delete'),
+      
 ]
